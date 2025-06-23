@@ -1,2 +1,14 @@
-# TractorShowRoomWebsite
-🚜 Tractor Showroom Website is a Spring Boot-based web application for managing tractors, customers, and sales. 🗂️ It performs full CRUD operations using MS SQL Server and stored procedures for better efficiency. 👤 Admin can add, update, delete, and view tractor models and customer details easily
+# 🚜 Tractor Showroom Website
+
+Spring Boot + MS SQL-based CRUD web app for managing tractors, customers, inventory & sales.
+
+## 🔧 Tech Used
+- Spring Boot
+- Thymeleaf
+- SQL Server
+- Stored Procedures
+
+## 📋 Features
+- Add, update, delete tractor/customer
+- Inventory & sales tracking
+- Spring Security login
