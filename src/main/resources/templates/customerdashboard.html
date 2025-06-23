@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ashok Tractor Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+body {
+	background-image: url('/static/images/ashok-tractor.gif');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 100vh;
+	margin: 0;
+	overflow: hidden;
+}
+
+#sidebar {
+	width: 250px;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: black;
+	color: white;
+	padding: 20px;
+	overflow-y: auto;
+	transition: transform 0.3s ease;
+	z-index: 100;
+}
+
+#sidebar::-webkit-scrollbar {
+	width: 8px;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+	background-color: black;
+	border-radius: 10px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.nav-item {
+	padding: 10px 15px;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.nav-item:hover {
+	background-color: rgba(250, 204, 21, 0.2);
+}
+
+.nav-item i {
+	font-size: 20px;
+}
+
+.divider {
+	border-top: 1px solid #facc15;
+	margin: 10px 0;
+}
+
+.main-content {
+	flex-grow: 1;
+	padding: 20px;
+	margin-left: 250px;
+	height: 100vh;
+	overflow-y: scroll;
+	background-color: rgba(0, 0, 0, 0.6);
+	color: white;
+}
+
+.main-content::-webkit-scrollbar {
+	display: none;
+}
+
+.overview {
+	max-width: 1200px;
+	margin: 20px auto;
+	background: rgba(0, 0, 0, 0.7);
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.hamburger, .close-btn {
+	display: none;
+}
+
+@media ( max-width : 768px) {
+	#sidebar {
+		transform: translateX(-100%);
+	}
+	#sidebar.show {
+		transform: translateX(0);
+	}
+	.main-content {
+		margin-left: 0;
+	}
+	.hamburger {
+		display: block;
+		background-color: transparent;
+		border: none;
+		font-size: 2rem;
+		color: white;
+		position: fixed;
+		top: 20px;
+		left: 20px;
+		z-index: 101;
+	}
+	#sidebar .close-btn {
+		display: block;
+		background: none;
+		border: none;
+		color: white;
+		font-size: 1.5rem;
+		position: absolute;
+		top: 15px;
+		right: 20px;
+	}
+}
+</style>
+</head>
+<body>
+
+	<button class="hamburger" id="hamburger-btn">
+		<i class="fas fa-bars"></i>
+	</button>
+
+
+	<div id="sidebar">
+		<button class="close-btn" id="close-btn">
+			<i class="fas fa-times"></i>
+		</button>
+		<h2 class="text-3xl font-bold text-yellow-400 mb-8">
+			<i class="fas fa-tractor"></i> ASHOK TRACTOR
+		</h2>
+		<div>
+			<a href="#" class="nav-item"><i class="fas fa-tractor"></i> Home</a>
+			<div class="divider"></div>
+			<a th:href="@{/ed/{id}(id=${customer.customerId})}" class="nav-item">
+				<i class="fas fa-user-gear"></i> Update Profile
+			</a> <a href="/tractorlist" class="nav-item"><i
+				class="fas fa-truck-monster"></i> View Tractors</a>
+			<div class="divider"></div>
+			<a href="/jivo" class="nav-item"
+				style="display: flex; align-items: center; gap: 8px;"> <img
+				src="/images/t1.png" alt="Logo" style="width: 24px; height: 24px;">
+
+				view JIVO
+			</a> <a href="/yuvraj" class="nav-item"
+				style="display: flex; align-items: center; gap: 8px;"> <img
+				src="/images/t1.png" alt="Logo" style="width: 24px; height: 24px;">
+
+				view YUVRAJ
+			</a> <a href="/xp" class="nav-item"
+				style="display: flex; align-items: center; gap: 8px;"> <img
+				src="/images/t1.png" alt="Logo" style="width: 24px; height: 24px;">
+				XP PLUS
+			</a> </a> <a href="/yuvo" class="nav-item"
+				style="display: flex; align-items: center; gap: 8px;"> <img
+				src="/images/t1.png" alt="Logo" style="width: 24px; height: 24px;">
+				view YUVOTECH
+			</a> </a> <a href="/oja" class="nav-item"
+				style="display: flex; align-items: center; gap: 8px;"> <img
+				src="/images/t1.png" alt="Logo" style="width: 24px; height: 24px;">
+				view OJHA
+			</a> </a> <a href="/arjun" class="nav-item"
+				style="display: flex; align-items: center; gap: 8px;"> <img
+				src="/images/t1.png" alt="Logo" style="width: 24px; height: 24px;">
+				view ARJUN
+			</a>
+			<div class="divider"></div>
+
+			<a href="showFeedback" class="nav-item"><i class="fas fa-message"></i>
+				Feedback</a>
+			<div class="divider"></div>
+			<a href="/logout" class="nav-item"><i class="fas fa-sign-out-alt"></i>
+				Logout</a>
+		</div>
+	</div>
+
+
+	<div class="main-content">
+		<div class="overview">
+			<h1 class="text-3xl font-bold text-yellow-400 mb-4">
+				Welcome to Ashok Tractor Dashboard,Welcome <span
+					th:text="${customer.name}"></span>
+			</h1>
+
+			<p class="text-white mb-6">Powering your field with performance
+				and trust.</p>
+
+			
+			<div class="bg-gray-900 bg-opacity-80 rounded-xl p-6 shadow-lg">
+				<h2 class="text-2xl font-bold text-yellow-300 mb-4">Explore
+					Features</h2>
+				<div
+					class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-white">
+					<div
+						class="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform duration-300 shadow-md flex items-center gap-4">
+						<i class="fas fa-user-gear text-yellow-400 text-2xl"></i><span>Update
+							your personal details to keep your profile accurate and
+							up-to-date.</span>
+					</div>
+					<div
+						class="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform duration-300 shadow-md flex items-center gap-4">
+						 <i class="fas fa-tractor text-green-400 text-xl"></i> <span>Explore XP
+							PLUS images, detailed descriptions, and complete specifications
+							in one place.</span>
+					</div>
+
+					<div
+						class="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform duration-300 shadow-md flex items-center gap-4">
+					 <i class="fas fa-tractor text-orange-400 text-xl"></i> <span>Explore
+							YUVO TECH tractor images, detailed descriptions, and complete
+							specifications in one place.</span>
+					</div>
+
+					<div
+						class="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform duration-300 shadow-md flex items-center gap-4">
+						 <i class="fas fa-tractor text-violet-400 text-xl"></i> <span>Explore
+							Arjun tractor images, detailed descriptions, and complete
+							specifications in one place.</span>
+					</div>
+					<div
+						class="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform duration-300 shadow-md flex items-center gap-4">
+						 <i class="fas fa-tractor text-white-400 text-xl"></i> <span>Explore
+							Arjun tractor images, detailed descriptions, and complete
+							specifications in one place.</span>
+					</div>
+					<div
+						class="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform duration-300 shadow-md flex items-center gap-4">
+						 <i class="fas fa-tractor text-red-400 text-xl"></i> <span>Explore
+							Arjun tractor images, detailed descriptions, and complete
+							specifications in one place.</span>
+					</div>
+
+					<div class="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform duration-300 shadow-md flex items-center gap-4">
+    <i class="fas fa-tractor text-green-400 text-xl"></i>
+    <span class="text-white">
+        Explore Ojha tractor images, detailed descriptions, and complete specifications in one place.
+    </span>
+</div>
+
+					<div
+						class="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform duration-300 shadow-md flex items-center gap-4">
+					 <i class="fas fa-tractor text-blue-400 text-xl"></i> <span>Explore
+							JIVO tractor images, detailed descriptions, and complete
+							specifications in one place.</span>
+					</div>
+
+
+					<div
+						class="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform duration-300 shadow-md flex items-center gap-4">
+						<i class="fas fa-message text-yellow-400 text-2xl"></i><span>Submit
+							feedback to help us improve your experience.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    hamburgerBtn.addEventListener('click', () => {
+      sidebar.classList.add('show');
+      hamburgerBtn.style.display = 'none';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      sidebar.classList.remove('show');
+      hamburgerBtn.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

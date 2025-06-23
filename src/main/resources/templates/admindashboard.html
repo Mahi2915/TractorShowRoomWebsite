@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tractor Showroom Admin Dashboard</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+body {
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+.glass {
+	background: rgba(255, 255, 255, 0.85);
+	backdrop-filter: blur(8px);
+}
+
+.card:hover {
+	transform: scale(1.05);
+	transition: transform 0.3s ease;
+}
+</style>
+</head>
+<body class="min-h-screen flex font-sans text-gray-800">
+
+
+	<aside
+		class="w-64 bg-yellow-600 text-white flex flex-col space-y-6 py-7 px-2 animate__animated animate__fadeInLeft">
+		<div class="text-3xl font-bold text-center">🚜 Ashok Tractor</div>
+		<nav class="flex flex-col space-y-4">
+			<a href="#"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300"><i
+				class="fas fa-home mr-2"></i> Dashboard</a> <a href="/adminlist"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-user-shield mr-2"></i> Admins List
+			</a> <a href="/adminsignup"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-user-shield mr-2"></i> Add Admin
+			</a> <a href="/register"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-user-plus mr-2"></i> Add Customer
+			</a> <a href="/showTractor"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-plus-circle mr-2"></i> Tractor Entry
+			</a> <a href="/TractorSalesForm"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-tractor"
+				style="color: white; font-size: 22px; margin-right: 8px;"></i>
+				Tractor sale Entry
+			</a> <a href="/tractorsalelist"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-tractor"
+				style="color: white; font-size: 22px; margin-right: 8px;"></i> view
+				Tractor sales
+			</a> <a href="/chart"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-chart-bar mr-2"></i> Monthly Tractor Sales Reports
+			</a> <a href="/tractorslist"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300"><i
+				class="fas fa-tractor mr-2"></i> Tractors</a> <a href="/customerlist"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300"><i
+				class="fas fa-users mr-2"></i> Customers</a> <a href="/showSpares"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-plus-circle mr-2"></i> Add Spare
+			</a> <a href="/spareslist"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300"><i
+				class="fas fa-boxes mr-2"></i> Inventory</a> <a href="/salesform"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-cash-register mr-2"></i> Sale Entry
+			</a> <a href="/saleslist"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-receipt mr-2"></i> View Sales
+			</a> <a href="/monthlysaleschart"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-chart-bar mr-2"></i> Monthly Sales Chart
+			</a> <a href="/monthlylinechart"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-chart-bar mr-2"></i> Monthly Sales line Chart
+			</a> <a href="/topsoldspares"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-cogs text-yellow-500 text-3xl"> </i>topsales
+			</a> <a href="/supplierlist"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-truck-loading mr-2"></i> View Suppliers
+			</a> <a href="/supplierform"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-plus-circle mr-2"></i> Add Supplier
+			</a> <a href="/orderform"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-plus-circle mr-2"></i> Add Orders
+			</a> <a href="/orderlist"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-clipboard-list mr-2"></i> View Orders
+			</a> <a href="/purchaseform"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-plus-circle mr-2"></i> Purchase Entry
+			</a> <a href="/purchaselist"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300">
+				<i class="fas fa-receipt mr-2"></i> View Purchases
+			</a> <a href="#"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300"><i
+				class="fas fa-calendar-check mr-2"></i> Bookings</a> <a
+				href="/showService"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300"><i
+				class="fas fa-wrench mr-2"></i> Service Entry</a> <a
+				href="/showComplete"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300 mb-6">
+				<i class="fas fa-check-circle mr-2"></i> Service Finish Entry
+			</a> <a href="/service"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300 mb-6">
+				<i class="fas fa-receipt mr-2"></i> view service
+			</a> <a href="/feedlist"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300"><i
+				class="fas fa-comments mr-2"></i> Feedback</a> <a href="#"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300"><i
+				class="fas fa-cogs mr-2"></i> Settings</a> <a href="#"
+				class="hover:bg-yellow-500 px-4 py-2 rounded flex items-center transition duration-300"><i
+				class="fas fa-sign-out-alt mr-2"></i> Logout</a>
+		</nav>
+	</aside>
+
+
+	<main
+		class="flex-1 p-6 overflow-y-auto glass animate__animated animate__fadeInUp animate__faster">
+		<h1
+			class="text-3xl font-bold mb-6 text-yellow-800 animate__animated animate__bounceIn">Welcome,
+			Admin!</h1>
+
+
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+			<div
+				class="bg-white shadow-lg rounded-xl p-6 card animate__animated animate__zoomIn">
+				<h2 class="text-xl font-semibold text-gray-700">Total Tractors</h2>
+				<p class="text-3xl font-bold text-yellow-600" th:text="${count}">0</p>
+			</div>
+			<div
+				class="bg-white shadow-lg rounded-xl p-6 card animate__animated animate__zoomIn animate__delay-1s">
+				<h2 class="text-xl font-semibold text-gray-700">Total Sales</h2>
+				<p class="text-3xl font-bold text-yellow-600" th:text="${c}">0</p>
+			</div>
+
+
+			<div
+				class="bg-white shadow-lg rounded-xl p-6 card animate__animated animate__zoomIn animate__delay-2s">
+				<h2 class="text-xl font-semibold text-gray-700">Customers</h2>
+				<p class="text-3xl font-bold text-yellow-600" th:text="${c}">0</p>
+			</div>
+			<div
+				class="bg-white shadow-lg rounded-xl p-6 card animate__animated animate__zoomIn animate__delay-3s">
+				<h2 class="text-xl font-semibold text-gray-700">Pending Orders</h2>
+				<p class="text-3xl font-bold text-yellow-600">18</p>
+			</div>
+
+
+		</div>
+		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+			<div th:each="part : ${topsales}"
+				class="bg-white shadow-lg rounded-xl p-6 card animate__animated animate__zoomIn">
+				<h2 class="text-lg font-semibold text-gray-700">Part Name</h2>
+				<p class="text-xl font-bold text-blue-600"
+					th:text="${part.partName}">Part Name</p>
+
+				<h2 class="text-lg font-semibold text-gray-700 mt-4">Quantity
+					Sold</h2>
+				<p class="text-2xl font-bold text-green-600"
+					th:text="${part.totalQuantitySold}">0</p>
+			</div>
+		</div>
+
+
+
+
+	</main>
+
+</body>
+</html>

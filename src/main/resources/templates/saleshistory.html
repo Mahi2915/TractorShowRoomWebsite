@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tractor Sales Records</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #2f2f2f;  
+            color: #f1f1f1;  
+            font-family: 'Roboto', sans-serif;
+            padding: 40px;
+        }
+
+        h2 {
+            color: #ff6f00;  
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #333;  
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.4);
+            border-radius: 10px;
+            overflow: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ff6f00;  
+        }
+
+        th {
+            background-color: #ff6f00;  
+            color: #1f1f1f;  
+        }
+
+        tr:hover {
+            background-color: #444;  
+        }
+
+        .action-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .action-icons i {
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .action-icons i:hover {
+            transform: scale(1.2);
+            color: #ff6f00;  
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ff6f00;  
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            table {
+                border: none;
+                box-shadow: none;
+                background: none;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tbody tr {
+                background-color: #333;
+                margin-bottom: 20px;
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+                animation: fadeIn 0.5s ease-in-out;
+            }
+
+            td {
+                position: relative;
+                padding: 10px 10px 10px 50%;
+                text-align: left;
+                border: none;
+                border-bottom: 1px solid #ff6f00;  
+                color: white;
+            }
+
+            td::before {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                color: #ff6f00;  
+                font-weight: bold;
+            }
+
+            td:nth-of-type(1)::before { content: "Sale ID"; }
+            td:nth-of-type(2)::before { content: "Tractor ID"; }
+            td:nth-of-type(3)::before { content: "Customer ID"; }
+            td:nth-of-type(4)::before { content: "Quantity"; }
+            td:nth-of-type(5)::before { content: "Sale Price"; }
+            td:nth-of-type(6)::before { content: "Total Price"; }
+            td:nth-of-type(7)::before { content: "Sale Date"; }
+            td:nth-of-type(8)::before { content: "Action"; }
+
+            .action-icons {
+                justify-content: flex-start;
+                padding-left: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+<h2>Tractor Sales Records</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Sale ID</th>
+            <th>Tractor ID</th>
+            <th>Customer ID</th>
+            <th>Quantity</th>
+            <th>Sale Price</th>
+            <th>Total Price</th>
+            <th>Sale Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="sale : ${sales}">
+            <td th:text="${sale.saleId}"></td>
+            <td th:text="${sale.tractorId}"></td>
+            <td th:text="${sale.customerId}"></td>
+            <td th:text="${sale.saleQuantity}"></td>
+            <td th:text="${sale.salePrice}"></td>
+            <td th:text="${sale.totalPrice}"></td>
+            <td th:text="${#dates.format(sale.saleDate, 'yyyy-MM-dd')}"></td>
+            <td class="action-icons">
+                <a th:href="@{/modify2/{id}(id=${sale.saleId})}" title="Edit">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a th:href="@{/drop3/{id}(id=${sale.saleId})}" onclick="return confirm('Are you sure you want to delete this sale?')" title="Delete">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

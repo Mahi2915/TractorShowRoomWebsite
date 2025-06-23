@@ -1,0 +1,122 @@
+<!-- tractor-history.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tractor History</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 1rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 900px;
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        thead {
+            background-color: #2e86de;
+            color: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+        }
+
+        tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tbody tr {
+                margin-bottom: 1rem;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                padding: 1rem;
+            }
+
+            td {
+                padding: 0.75rem 1rem;
+                text-align: left;
+                position: relative;
+                border-bottom: 1px solid #eee;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: relative;
+                display: block;
+                font-weight: bold;
+                color: #2e86de;
+                margin-bottom: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align: center; color: #2e86de; margin-bottom: 20px;">🚜 Tractor History</h2>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Model</th>
+                <th>Brand</th>
+                <th>Color</th>
+                <th>Engine Power</th>
+                <th>Count</th>
+                <th>Availability</th>
+                <th>Price (₹)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tractor : ${tractorHistory}">
+                <td data-label="ID" th:text="${tractor.tractor_id}"></td>
+                <td data-label="Model" th:text="${tractor.model_name}"></td>
+                <td data-label="Brand" th:text="${tractor.brand}"></td>
+                <td data-label="Color" th:text="${tractor.color}"></td>
+                <td data-label="Engine Power" th:text="${tractor.engine_power}"></td>
+                <td data-label="Count" th:text="${tractor.current_count}"></td>
+                <td data-label="Availability" th:text="${tractor.availability}"></td>
+                <td data-label="Price (₹)" th:text="${tractor.price} + ' ₹'"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

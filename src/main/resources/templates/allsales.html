@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sales Records</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .table-row {
+            transition: all 0.5s ease-in-out;
+            animation: fadeInUp 0.8s ease-in-out both;
+        }
+
+        .table-row:hover {
+            background-color: #FFD700; 
+            transform: scale(1.01);
+            color: #1f2937; 
+        }
+
+        .animated-card {
+            transition: all 0.5s ease-in-out;
+            animation: slideIn 0.7s ease forwards;
+        }
+
+        .animated-card:hover {
+            background-color: #FFD700;
+            transform: scale(1.05);
+            color: #1f2937;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans p-4">
+
+    <h1 class="text-3xl font-bold text-center text-yellow-600 mb-6 animate-bounce">Sales Records</h1>
+
+    
+    <div class="hidden md:block overflow-x-auto shadow-lg rounded-lg">
+        <table class="min-w-full bg-white text-gray-800">
+            <thead class="bg-yellow-400 text-white">
+                <tr>
+                    <th class="py-3 px-4 text-left">Sale ID</th>
+                    <th class="py-3 px-4 text-left">Customer ID</th>
+                    <th class="py-3 px-4 text-left">Part ID</th>
+                    <th class="py-3 px-4 text-left">Quantity</th>
+                    <th class="py-3 px-4 text-left">Price</th>
+                    <th class="py-3 px-4 text-left">Total</th>
+                    <th class="py-3 px-4 text-left">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="sale : ${salesList}" class="table-row border-b border-gray-200">
+                    <td class="py-2 px-4" th:text="${sale.saleId}"></td>
+                    <td class="py-2 px-4" th:text="${sale.customerId}"></td>
+                    <td class="py-2 px-4" th:text="${sale.partId}"></td>
+                    <td class="py-2 px-4" th:text="${sale.saleQuantity}"></td>
+                    <td class="py-2 px-4" th:text="${sale.price}"></td>
+                    <td class="py-2 px-4" th:text="${sale.totalPrice}"></td>
+                    <td class="py-2 px-4" th:text="${#temporals.format(sale.saleDate, 'dd-MM-yyyy HH:mm')}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+    <div class="md:hidden space-y-4">
+        <div th:each="sale : ${salesList}" class="animated-card bg-white rounded-xl shadow-md p-4">
+            <p><strong>Sale ID:</strong> <span th:text="${sale.saleId}"></span></p>
+            <p><strong>Customer ID:</strong> <span th:text="${sale.customerId}"></span></p>
+            <p><strong>Part ID:</strong> <span th:text="${sale.partId}"></span></p>
+            <p><strong>Quantity:</strong> <span th:text="${sale.saleQuantity}"></span></p>
+            <p><strong>Price:</strong> ₹<span th:text="${sale.price}"></span></p>
+            <p><strong>Total:</strong> ₹<span th:text="${sale.totalPrice}"></span></p>
+            <p><strong>Date:</strong> <span th:text="${#temporals.format(sale.saleDate, 'dd-MM-yyyy HH:mm')}"></span></p>
+        </div>
+    </div>
+
+</body>
+</html>

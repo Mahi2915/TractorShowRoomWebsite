@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Monthly Tractor Sales Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .chart-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chart-container">
+    <h2>Current Month Tractor Sales</h2>
+    <canvas id="lineChart" height="100"></canvas>
+  </div>
+
+  <script th:inline="javascript">
+  /*<![CDATA[*/
+  const chartData = /*[[${chartData}]]*/ [];
+  const labels = [];
+  const values = [];
+
+  for (let i = 0; i < chartData.length; i++) {
+    labels.push(chartData[i].modelName);
+    values.push(chartData[i].totalSold);
+  }
+
+  const ctx = document.getElementById('lineChart').getContext('2d');
+
+  
+  const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+  gradient.addColorStop(0, 'rgba(255,99,132,0.3)');
+  gradient.addColorStop(0.5, 'rgba(54,162,235,0.3)');
+  gradient.addColorStop(1, 'rgba(255,206,86,0.3)');
+
+  
+  const pointColors = [
+    '#ff6384', '#36a2eb', '#ffcd56', '#4bc0c0', '#9966ff', '#ff9f40'
+  ];
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Units Sold',
+        data: values,
+        borderColor: '#7e57c2',
+        backgroundColor: gradient,
+        pointBackgroundColor: pointColors,
+        pointBorderColor: '#fff',
+        pointRadius: 6,
+        pointHoverRadius: 8,
+        tension: 0.4,
+        fill: true
+      }]
+    },
+    options: {
+      responsive: true,
+      animation: {
+        duration: 1200,
+        easing: 'easeOutBounce'
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: '#333',
+            font: {
+              size: 14,
+              weight: 'bold'
+            }
+          }
+        },
+        tooltip: {
+          backgroundColor: '#fff',
+          titleColor: '#333',
+          bodyColor: '#000',
+          borderColor: '#ddd',
+          borderWidth: 1
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#666' },
+          grid: { display: false }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: { color: '#666' },
+          grid: { color: '#eee' }
+        }
+      }
+    }
+  });
+  /*]]>*/
+</script>
+
+
+</body>
+</html>

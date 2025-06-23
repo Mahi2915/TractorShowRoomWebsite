@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Customer Form</title>
+    
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    
+    <style>
+    
+    .reletive group{
+      font-weight: bold;
+    
+    }
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 1.5s ease-in-out;
+        }
+
+        
+        ::placeholder {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50" style="background:black;">
+
+    
+    <form action="/updateCustomer" th:object="${customer}" method="post" class="max-w-3xl mx-auto bg-gradient-to-br from-pink-100 via-purple-100 to-yellow-100 shadow-xl rounded-2xl p-6 space-y-4 animate-fade-in">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Edit Customer</h2>
+
+        <input type="hidden" th:field="*{customerId}" />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div class="relative group">
+                <input type="text" th:field="*{name}" placeholder="Name"
+                    class="peer w-full border-b-2 border-pink-300 focus:border-pink-600 bg-transparent px-2 py-2 outline-none transition-all duration-300 text-gray-800 placeholder-pink-300" />
+            </div>
+
+            
+            <div class="relative group">
+                <input type="number" th:field="*{age}" placeholder="Age"
+                    class="peer w-full border-b-2 border-purple-300 focus:border-purple-600 bg-transparent px-2 py-2 outline-none transition-all duration-300 text-gray-800 placeholder-purple-300" />
+            </div>
+
+            
+            <div class="relative group">
+                <select th:field="*{gender}"
+                    class="peer w-full border-b-2 border-blue-300 focus:border-blue-600 bg-transparent px-2 py-2 outline-none transition-all duration-300 text-gray-800">
+                    <option value="" class="text-gray-400">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            
+            <div class="relative group">
+                <input type="email" th:field="*{email}" placeholder="Email"
+                    class="peer w-full border-b-2 border-red-300 focus:border-red-600 bg-transparent px-2 py-2 outline-none transition-all duration-300 text-gray-800 placeholder-red-300" />
+            </div>
+
+            
+            <div class="relative group">
+                <input type="text" th:field="*{phone}" placeholder="Phone"
+                    class="peer w-full border-b-2 border-green-300 focus:border-green-600 bg-transparent px-2 py-2 outline-none transition-all duration-300 text-gray-800 placeholder-green-300" />
+            </div>
+
+            
+            <div class="md:col-span-2 relative group">
+                <textarea th:field="*{address}" rows="2" placeholder="Address"
+                    class="peer w-full border-b-2 border-yellow-300 focus:border-yellow-600 bg-transparent px-2 py-2 outline-none transition-all duration-300 text-gray-800 placeholder-yellow-300"></textarea>
+            </div>
+        </div>
+
+        
+        <div class="text-center pt-4">
+            <button type="submit" class="bg-gradient-to-r from-pink-400 to-yellow-500 hover:from-pink-500 hover:to-yellow-600 text-white font-bold px-8 py-3 rounded-full shadow-lg transition duration-300">
+                Update
+            </button>
+        </div>
+    </form>
+
+</body>
+
+</html>

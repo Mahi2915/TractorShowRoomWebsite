@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tractor Inventory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .table-container {
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .action-btn {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .action-btn:hover {
+            transform: scale(1.1) rotate(-1deg);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        tr {
+            animation: rowFadeIn 0.8s ease-in forwards;
+            opacity: 0;
+        }
+
+        tr:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        tr:nth-child(odd) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes rowFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                display: none;
+            }
+
+            td {
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+                animation: slideInLeft 0.6s ease-in-out;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 1rem;
+                width: 45%;
+                padding-right: 1rem;
+                white-space: nowrap;
+                font-weight: bold;
+                text-align: left;
+                color: #6B7280;
+            }
+
+            .mobile-action {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 0.5rem;
+            }
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-yellow-100 via-orange-200 to-yellow-100 min-h-screen p-6">
+
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl font-bold text-center mb-8 text-yellow-800 animate-pulse">Tractor Inventory</h1>
+
+        <div class="overflow-x-auto table-container">
+            <table class="min-w-full bg-white shadow-xl rounded-xl">
+                <thead class="bg-yellow-500 text-white text-lg">
+                    <tr>
+                        <th class="py-4 px-6">Model Name</th>
+                        <th class="py-4 px-6">Brand</th>
+                        <th class="py-4 px-6">Color</th>
+                        <th class="py-4 px-6">Engine Power</th>
+                        <th class="py-4 px-6">Current Count</th>
+                        <th class="py-4 px-6">Availability</th>
+                        <th class="py-4 px-6">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="tractor : ${tractors}" class="hover:bg-yellow-50 transition-all border-b">
+                        <td class="py-3 px-6" data-label="Model Name" th:text="${tractor.model_name}"></td>
+                        <td class="py-3 px-6" data-label="Brand" th:text="${tractor.brand}"></td>
+                        <td class="py-3 px-6" data-label="Color" th:text="${tractor.color}"></td>
+                        <td class="py-3 px-6" data-label="Engine Power" th:text="${tractor.engine_power}"></td>
+                        <td class="py-3 px-6" data-label="Current Count" th:text="${tractor.current_count}"></td>
+                        <td class="py-3 px-6" data-label="Availability" th:text="${tractor.availability}"></td>
+                        <td class="py-3 px-6 flex gap-2 md:flex-row mobile-action" data-label="Action">
+                            <a th:href="@{/modify/{id}(id=${tractor.tractor_id})}"
+                               class="action-btn bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-full shadow">
+                                ✏️ Modify
+                            </a>
+                            <a th:href="@{/drop/{id}(id=${tractor.tractor_id})}"
+                               onclick="return confirm('Are you sure you want to delete this tractor?');"
+                               class="action-btn bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-full shadow">
+                                🗑️ Delete
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

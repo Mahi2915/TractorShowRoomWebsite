@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Add Form</title>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	background-color: black;
+	color: white;
+	font-family: Arial, sans-serif;
+}
+
+h2 {
+	text-align: center;
+	margin-top: 50px;
+	color: red;
+}
+
+form {
+	width: 300px;
+	margin: 40px auto;
+}
+
+label {
+	display: block;
+	margin-top: 25px;
+	font-size: 16px;
+}
+
+input {
+	width: 100%;
+	padding: 8px;
+	background: transparent;
+	border: none;
+	border-bottom: 2px solid red;
+	color: white;
+	font-size: 16px;
+	outline: none;
+}
+
+input::placeholder {
+	color: gray;
+}
+
+button {
+	margin-top: 30px;
+	width: 100%;
+	padding: 10px;
+	background-color: red;
+	color: white;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+button:hover {
+	background-color: darkred;
+}
+</style>
+</head>
+<body>
+
+	<h2>Add Admin</h2>
+	<form action="/addadmin" method="POST">
+		<label for="name">Full Name</label> <input type="text" id="name"
+			name="name" placeholder="Enter full name" required> <label
+			for="username">Username</label> <input type="text" id="username"
+			name="username" placeholder="Enter username" required> <label
+			for="password">Password</label> <input type="password" id="password"
+			name="password" placeholder="Enter password" required>
+
+		<button type="submit">Add Admin</button>
+	</form>
+
+</body>
+</html>

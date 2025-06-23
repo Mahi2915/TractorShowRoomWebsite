@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Record Tractor Sale</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-yellow-100 via-white to-yellow-50 min-h-screen flex items-center justify-center p-6">
+
+    <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-xl border border-yellow-300">
+        <h2 class="text-3xl font-extrabold text-center text-yellow-700 mb-8 tracking-wide">🚜 Record Tractor Sale</h2>
+
+        <form action="/saleEntries" method="post" class="space-y-5">
+            
+            <input type="number" name="tractorId" placeholder="Enter Tractor ID"
+                   class="w-full border border-yellow-400 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+
+            <input type="number" name="customerId" placeholder="Enter Customer ID"
+                   class="w-full border border-yellow-400 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+
+            <input type="number" name="saleQuantity" placeholder="Enter Quantity"
+                   class="w-full border border-yellow-400 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" min="1" required>
+
+            <input type="number" name="salePrice" step="0.01" placeholder="Enter Sale Price"
+                   class="w-full border border-yellow-400 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-500" required>
+
+            <button type="submit"
+                    class="w-full bg-yellow-500 hover:bg-yellow-600 text-white text-lg font-semibold py-3 rounded-md transition-all duration-300 shadow-md hover:shadow-lg">
+                💾 Submit Sale
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>

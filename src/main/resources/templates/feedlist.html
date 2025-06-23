@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Feedback List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-100 to-blue-100 min-h-screen">
+    <div class="container mx-auto p-8">
+        <h2 class="text-2xl font-bold text-blue-700 mb-6">Feedback List</h2>
+        
+       
+        <div class="bg-white p-8 rounded-xl shadow-lg hidden md:block">
+            <table class="min-w-full table-auto text-left border-collapse">
+                <thead>
+                    <tr class="bg-blue-600 text-white">
+                       
+                        <th class="p-3">Tractor Number</th>
+                        <th class="p-3">Rating</th>
+                        <th class="p-3">Comment</th>
+                        <th class="p-3">Feedback Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    <tr th:each="feedback : ${feedList}">
+                        
+                        <td th:text="${feedback.tractorNumber}" class="p-3 border-b"></td>
+                        <td th:text="${feedback.rating}" class="p-3 border-b"></td>
+                        <td th:text="${feedback.comment}" class="p-3 border-b"></td>
+                       <td class="p-2" th:text="${#dates.format(feedback.feedBackDate, 'yyyy-MM-dd')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+       
+        <div class="md:hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div th:each="feedback : ${feedList}" class="bg-white p-4 rounded-lg shadow-md">
+                <div class="flex flex-col">
+                    
+                    <div class="mb-2">
+                        <span class="font-semibold text-gray-600">Rating:</span>
+                        <span th:text="${feedback.rating}" class="text-yellow-500"></span>
+                    </div>
+                    <p class="text-gray-700 mb-2" th:text="'Comment: ' + ${feedback.comment}"></p>
+                    <p class="text-gray-500 text-sm" th:text="'Feedback Date: ' + ${#dates.format(feedback.feedBackDate, 'yyyy-MM-dd')}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Orders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: orange;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 30px;
+            color: orange;
+        }
+
+        .error-message {
+            background-color: #ff4c4c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            animation: fadeOut 1s ease-in-out 18s forwards;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                height: 0;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            animation: fadeIn 1s ease;
+        }
+
+        th, td {
+            padding: 15px;
+            border-bottom: 2px solid orange;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        th {
+            background-color: #262626;
+            color: orange;
+        }
+
+        tr:hover {
+            background-color: #333333;
+            transition: 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        
+        .mobile-view {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            table {
+                display: none;
+            }
+
+            .mobile-view {
+                display: block;
+            }
+
+            .order-card {
+                background-color: #2a2a2a;
+                border: 2px solid orange;
+                border-radius: 15px;
+                padding: 20px;
+                margin-bottom: 20px;
+                animation: fadeIn 0.8s ease;
+            }
+
+            .order-card p {
+                margin: 8px 0;
+                color: white;
+            }
+
+            .order-card p span {
+                font-weight: bold;
+                color: orange;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>All Orders</h2>
+
+<div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Part ID</th>
+            <th>Supplier ID</th>
+            <th>Quantity</th>
+            <th>Order Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="order : ${ordersList}">
+            <td th:text="${order.orderId}"></td>
+            <td th:text="${order.partId}"></td>
+            <td th:text="${order.supplierId}"></td>
+            <td th:text="${order.quantityOrdered}"></td>
+            <td th:text="${#dates.format(order.orderDate, 'dd-MM-yyyy HH:mm')}"></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div class="mobile-view">
+    <div class="order-card" th:each="order : ${ordersList}">
+        <p><span>Order ID:</span> <span th:text="${order.orderId}"></span></p>
+        <p><span>Part ID:</span> <span th:text="${order.partId}"></span></p>
+        <p><span>Supplier ID:</span> <span th:text="${order.supplierId}"></span></p>
+        <p><span>Quantity:</span> <span th:text="${order.quantityOrdered}"></span></p>
+        <p><span>Order Date:</span> <span th:text="${#dates.format(order.orderDate, 'dd-MM-yyyy HH:mm')}"></span></p>
+    </div>
+</div>
+
+</body>
+</html>

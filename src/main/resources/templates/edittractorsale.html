@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Tractor Sale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #1f1f1f;
+            color: #f1f1f1;
+            font-family: 'Roboto', sans-serif;
+            padding: 40px;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: auto;
+            background: #2f2f2f;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 111, 0, 0.3);
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            color: #ff6f00;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-group {
+            flex: 1 1 calc(50% - 20px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"] {
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background-color: #444;
+            color: #fff;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #bbb;
+        }
+
+        .full-width {
+            flex: 1 1 100%;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #ff6f00;
+            color: #1f1f1f;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff8800;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2><i class="fas fa-edit"></i> Edit Tractor Sale</h2>
+    <form action="/updateTractorSale" th:object="${Tractor}" method="post">
+        <input type="hidden" th:field="*{saleId}"/>
+
+        <div class="form-group">
+            <input type="text" th:field="*{tractorId}" placeholder="Enter Tractor ID">
+        </div>
+        <div class="form-group">
+            <input type="text" th:field="*{customerId}" placeholder="Enter Customer ID">
+        </div>
+        <div class="form-group">
+            <input type="number" th:field="*{saleQuantity}" placeholder="Enter Quantity">
+        </div>
+        <div class="form-group">
+            <input type="number" step="0.01" th:field="*{salePrice}" placeholder="Enter Sale Price">
+        </div>
+        <div class="form-group">
+            <input type="number" step="0.01" th:field="*{totalPrice}" placeholder="Enter Total Price">
+        </div>
+        <div class="form-group">
+            <input type="date" th:field="*{saleDate}">
+        </div>
+        <div class="form-group full-width">
+            <button type="submit"><i class="fas fa-save"></i> Update Sale</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

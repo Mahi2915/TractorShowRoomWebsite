@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Spare Part</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .input-field {
+            position: relative;
+            margin-top: 1.75rem;
+        }
+
+        .input-field input,
+        .input-field select {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #4b5563;
+            width: 100%;
+            padding: 0.75rem 0 0.25rem;
+            font-size: 1rem;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .input-field input:focus,
+        .input-field select:focus {
+            outline: none;
+            border-color: #facc15;
+            box-shadow: 0 1px 0 0 #facc15;
+        }
+
+        .input-field label {
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            color: #9ca3af;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .input-field input:focus + label,
+        .input-field input:not(:placeholder-shown) + label,
+        .input-field select:focus + label,
+        .input-field select:valid + label {
+            top: -0.75rem;
+            left: 0;
+            font-size: 0.75rem;
+            background-color: #1f2937;
+            color: #facc15;
+            padding: 0 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen py-12 px-6">
+
+<form action="/updateSpare" th:object="${spares}" method="post"
+      class="bg-gray-800 text-white p-8 rounded-2xl shadow-2xl max-w-4xl mx-auto animate__animated animate__fadeInDown">
+    <h2 class="text-4xl font-bold text-yellow-400 mb-8 text-center">✏️ Edit Spare Part</h2>
+
+    <input type="hidden" th:field="*{partId}"/>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="input-field">
+            <input type="text" th:field="*{partName}" placeholder=" " required>
+            <label>Part Name</label>
+        </div>
+
+        <div class="input-field">
+            <input type="text" th:field="*{brand}" placeholder=" " required>
+            <label>Brand</label>
+        </div>
+
+        <div class="input-field">
+            <input type="number" th:field="*{price}" placeholder=" " required>
+            <label>Price</label>
+        </div>
+
+        <div class="input-field">
+            <input type="number" th:field="*{quantity}" placeholder=" " required>
+            <label>Quantity</label>
+        </div>
+
+        <div class="input-field col-span-1 md:col-span-2">
+            <select th:field="*{availability}" required>
+                <option value="" disabled selected hidden></option>
+                <option value="Available">Available</option>
+                <option value="Unavailable">Unavailable</option>
+            </select>
+            <label>Availability</label>
+        </div>
+    </div>
+
+    <div class="text-center mt-12">
+        <button type="submit"
+                class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-10 py-3 rounded-full shadow-lg transition duration-300 transform hover:scale-105 animate__animated animate__pulse animate__infinite">
+            ✅ Update Spare
+        </button>
+    </div>
+</form>
+
+</body>
+</html>

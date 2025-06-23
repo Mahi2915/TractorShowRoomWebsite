@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Top 3 Sold Parts Today</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #fef9e7;
+        }
+        .table-hover tbody tr:hover {
+            background-color: gold;
+            transition: 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center mb-4 text-primary">Top 3 Spare Parts Sold Today</h2>
+    <table class="table table-bordered table-hover shadow rounded">
+        <thead class="table-dark text-center">
+            <tr>
+                <th>Part ID</th>
+                <th>Part Name</th>
+                <th>Total Quantity Sold</th>
+            </tr>
+        </thead>
+        <tbody th:if="${topParts != null}" th:each="part : ${topParts}" class="text-center">
+            <tr>
+                <td th:text="${part.partId}"></td>
+                <td th:text="${part.partName}"></td>
+                <td th:text="${part.totalQuantitySold}"></td>
+            </tr>
+        </tbody>
+        <tbody th:if="${topParts == null || #lists.isEmpty(topParts)}">
+            <tr>
+                <td colspan="3" class="text-center text-muted">No sales today</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

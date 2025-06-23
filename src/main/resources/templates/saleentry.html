@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spare Part Sale Entry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .input-field {
+            position: relative;
+            margin-top: 1.75rem;
+        }
+
+        .input-field input,
+        .input-field select {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #94a3b8; /* slate-400 */
+            width: 100%;
+            padding: 0.75rem 0 0.25rem;
+            font-size: 1rem;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .input-field input:focus,
+        .input-field select:focus {
+            outline: none;
+            border-color: #34d399; /* emerald-400 */
+            box-shadow: 0 1px 0 0 #34d399;
+        }
+
+        .input-field label {
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            color: #cbd5e1; /* slate-300 */
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .input-field input:focus + label,
+        .input-field input:not(:placeholder-shown) + label,
+        .input-field select:focus + label,
+        .input-field select:valid + label {
+            top: -0.75rem;
+            left: 0;
+            font-size: 0.75rem;
+            background-color: #1e293b; 
+            color: #34d399;
+            padding: 0 0.25rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen py-12 px-6">
+
+<form action="/saleEntry" method="post"
+      class="bg-slate-800 text-white p-8 rounded-2xl shadow-2xl max-w-3xl mx-auto animate__animated animate__fadeInDown">
+    <h2 class="text-3xl font-bold text-emerald-400 mb-6 text-center">Spare Part Sale Entry</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="input-field">
+            <input type="number" name="customerId" placeholder=" " required>
+            <label>Customer ID</label>
+        </div>
+
+        <div class="input-field">
+            <input type="number" name="partId" placeholder=" " required>
+            <label>Part ID</label>
+        </div>
+
+        <div class="input-field col-span-1 md:col-span-2">
+            <input type="number" name="saleQuantity" placeholder=" " required>
+            <label>Sale Quantity</label>
+        </div>
+    </div>
+
+    <div class="text-center mt-10">
+        <button type="submit"
+                class="bg-emerald-400 hover:bg-emerald-500 text-black font-bold px-10 py-3 rounded-full shadow-lg transition duration-300 transform hover:scale-105 animate__animated animate__pulse animate__infinite">
+            💾 Submit Sale
+        </button>
+    </div>
+</form>
+
+</body>
+</html>

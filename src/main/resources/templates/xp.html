@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mahindra Tractor Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      background-color: #1f1f1f;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    .section-title {
+      color: #1eeb6c;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+    .spec-box {
+      background-color: #333333;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease-in-out;
+    }
+    .spec-title {
+      font-weight: bold;
+      color: #ffea00;
+      font-size: 1.1rem;
+    }
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 3rem;
+      animation: fadeIn 1s ease-out;
+    }
+    .tractor-image {
+      flex: 1 1 300px;
+      transition: transform 0.5s ease;
+    }
+    .tractor-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+    .tractor-description {
+      flex: 2 1 400px;
+    }
+    .tractor-image:hover {
+      transform: scale(1.05);
+    }
+    .tractor-description p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .spec-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <h1 class="section-title">Mahindra 265 DI XP PLUS Tractor</h1>
+
+    <div class="main-content my-4">
+      <div class="tractor-image">
+        <img src="/images/xp.webp" alt="Mahindra 265 DI XP PLUS" />
+      </div>
+      <div class="tractor-description">
+        <p>
+          Introducing the powerhouse of the field - The Mahindra 265 DI XP PLUS Tractor! Get ready to experience extreme power and unbeatable fuel efficiency like never before. 
+          With its robust 24.6 kW (33 HP) engine and 137.8 Nm torque, this tractor is built to take on any agricultural task with ease. Need to lift heavy loads? No problem! With a whopping 
+          1500 kg hydraulic lifting capacity, this allrounder can handle it all. And let's not forget about comfort - with dual-acting power steering and optional manual steering, your ride 
+          will be smooth and enjoyable. Trustworthy and reliable, the Mahindra XP PLUS tractors come with a six-year warranty - an industry first! Get ready for maximum productivity and 
+          efficiency with the Mahindra 265 DI XP Plus Tractor.
+        </p>
+      </div>
+    </div>
+
+    <h3 class="section-title mt-5">Specifications</h3>
+    <div class="row">
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Engine Power Range</div>
+        <div>15.7 TO 25.7 kW (21 TO 35 HP)</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Maximum Torque</div>
+        <div>137.8 Nm</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Cylinders</div>
+        <div>3</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Drive Type</div>
+        <div>2WD</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Rated RPM</div>
+        <div>2000</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Steering Type</div>
+        <div>Dual Acting Power Steering / Manual Steering (Optional)</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Transmission Type</div>
+        <div>Partial Constant Mesh</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Clutch Type</div>
+        <div>Single</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Number of Gears</div>
+        <div>8 F + 2 R</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Brake Type</div>
+        <div>OIB</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Rear Tyre Size</div>
+        <div>345.44 mm x 711.2 mm (13.6 in x 28 in). Also Available With: 314.96 mm x 711.2 mm (12.4 in x 28 in)</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Hydraulics Lifting Capacity</div>
+        <div>1500 kg</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">PTO RPM</div>
+        <div>540</div>
+      </div>
+      <div class="col-md-4 spec-box">
+        <div class="spec-title">Service Interval</div>
+        <div>250</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        input::placeholder {
+            color: gray;
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans">
+
+<div class="max-w-md mx-auto mt-20 p-8 bg-gray-900 rounded-2xl shadow-lg animate__animated animate__fadeInUp">
+    <h2 class="text-3xl text-center text-yellow-400 font-bold mb-6 animate__animated animate__fadeInDown">
+        Edit Admin
+    </h2>
+
+    <form action="/updateAdmin" method="post" class="space-y-6">
+
+        
+        <input type="hidden" name="admin_id" th:value="${admin.admin_id}" />
+
+        <div>
+            <label class="block mb-1 text-sm text-gray-300">Name</label>
+            <input type="text" name="name" th:value="${admin.name}" placeholder="Enter name"
+                   class="w-full bg-transparent border-b-2 border-yellow-400 text-white text-lg focus:outline-none focus:border-yellow-300 transition"/>
+        </div>
+
+        <div>
+            <label class="block mb-1 text-sm text-gray-300">Username</label>
+            <input type="text" name="username" th:value="${admin.username}" placeholder="Enter username"
+                   class="w-full bg-transparent border-b-2 border-yellow-400 text-white text-lg focus:outline-none focus:border-yellow-300 transition"/>
+        </div>
+
+        <div>
+            <label class="block mb-1 text-sm text-gray-300">Password</label>
+            <input type="password" name="password" th:value="${admin.password}" placeholder="Enter new password"
+                   class="w-full bg-transparent border-b-2 border-yellow-400 text-white text-lg focus:outline-none focus:border-yellow-300 transition"/>
+        </div>
+
+        <button type="submit"
+                class="w-full py-3 bg-yellow-500 hover:bg-yellow-400 text-black font-semibold rounded-xl shadow-md transition duration-300 animate__animated animate__pulse">
+            Update Admin
+        </button>
+    </form>
+</div>
+
+</body>
+</html>

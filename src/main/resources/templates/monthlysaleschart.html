@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Monthly Spare Part Sales</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        
+        .chart-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .chart-wrapper {
+            width: max-content;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-6">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+        <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">Spare Parts Sold This Month</h2>
+
+        <div class="chart-container">
+            <div class="chart-wrapper">
+                <canvas id="monthlySalesChart" class="w-full h-96"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const salesData = /*[[${salesData}]]*/ [];
+        const labels = salesData.map(item => item.partName);
+        const data = salesData.map(item => item.totalSold);
+
+        const ctx = document.getElementById('monthlySalesChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Quantity Sold',
+                    data: data,
+                    backgroundColor: 'rgba(255, 206, 86, 0.7)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 2,
+                    borderRadius: 5,
+                    hoverBackgroundColor: 'rgba(255, 159, 64, 0.9)'
+                }]
+            },
+            options: {
+                responsive: true,
+                animation: {
+                    duration: 1000,
+                    easing: 'easeOutBounce'
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.parsed.y}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Quantity Sold',
+                            font: { size: 14 }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Spare Part Name',
+                            font: { size: 14 }
+                        },
+                        ticks: {
+                            autoSkip: false,
+                            maxRotation: 90,   
+                            minRotation: 45
+                        },
+                        barPercentage: 0.7,    
+                        categoryPercentage: 0.8 
+                    }
+                }
+            }
+        });
+        /*]]>*/
+    </script>
+
+</body>
+</html>

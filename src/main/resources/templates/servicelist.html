@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service List</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="p-4">
+        
+        <div class="hidden md:block">
+            <table class="min-w-full border border-gray-300 shadow-xl rounded-xl overflow-hidden">
+                <thead class="bg-red-500 text-white text-sm">
+                    <tr>
+                        <th class="p-2">ID</th>
+                        <th class="p-2">Customer</th>
+                        <th class="p-2">Tractor No</th>
+                        <th class="p-2">Service Date</th>
+                        <th class="p-2">Type</th>
+                        
+                        <th class="p-2">Next Service</th>
+                        <th class="p-2">Cost</th>
+                        <th class="p-2">Mechanic</th>
+                        <th class="p-2">Status</th>
+                        <th class="p-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="service : ${serviceList}" class="hover:bg-red-100 border-b transition-all duration-300">
+                        <td class="p-2" th:text="${service.serviceId}"></td>
+                        <td class="p-2" th:text="${service.customerName}"></td>
+                        <td class="p-2" th:text="${service.tractorNumber}"></td>
+                        <td class="p-2" th:text="${#dates.format(service.serviceDate, 'yyyy-MM-dd')}"></td>
+                        <td class="p-2" th:text="${service.serviceType}"></td>
+                        
+                        <td class="p-2" th:text="${#dates.format(service.nextServiceDate, 'yyyy-MM-dd')}"></td>
+                        <td class="p-2" th:text="${service.cost}"></td>
+                        <td class="p-2" th:text="${service.mechanicName}"></td>
+                        <td class="p-2" th:text="${service.status}"></td>
+                        <td class="p-2 text-center space-x-2">
+                            <a th:href="@{/modify4/{id}(id=${service.serviceId})}" class="text-blue-600 hover:text-green-600">✏️</a>
+                            <a th:href="@{/drop4/{id}(id=${service.serviceId})}" class="text-red-600 hover:text-red-800" onclick="return confirm('Are you sure?')">🗑️</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+       
+        <div class="md:hidden grid gap-4">
+            <div th:each="service : ${serviceList}" class="bg-white border-l-4 border-red-400 shadow-md rounded-xl p-4">
+                <p><strong>ID:</strong> <span th:text="${service.serviceId}"></span></p>
+                <p><strong>Customer:</strong> <span th:text="${service.customerName}"></span></p>
+                <p><strong>Tractor No:</strong> <span th:text="${service.tractorNumber}"></span></p>
+                <p><strong>Date:</strong> <span th:text="${#dates.format(service.serviceDate, 'yyyy-MM-dd')}"></span></p>
+                <p><strong>Type:</strong> <span th:text="${service.serviceType}"></span></p>
+                
+                <p><strong>Next:</strong> <span th:text="${#dates.format(service.nextServiceDate, 'yyyy-MM-dd')}"></span></p>
+                <p><strong>Cost:</strong> ₹<span th:text="${service.cost}"></span></p>
+                <p><strong>Mechanic:</strong> <span th:text="${service.mechanicName}"></span></p>
+                <p><strong>Status:</strong> <span th:text="${service.status}"></span></p>
+                <div class="flex justify-end space-x-4 pt-2">
+                    <a th:href="@{/modify4/{id}(id=${service.serviceId})}" class="text-blue-600 hover:text-green-600 text-lg">✏️</a>
+                    <a th:href="@{/drop4/{id}(id=${service.serviceId})}" class="text-red-600 hover:text-red-800 text-lg" onclick="return confirm('Are you sure?')">🗑️</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

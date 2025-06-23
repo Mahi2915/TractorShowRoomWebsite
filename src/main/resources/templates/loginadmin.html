@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login - Tractor Showroom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 flex items-center justify-center min-h-screen">
+
+    <div class="bg-gray-800 p-10 rounded-xl shadow-2xl w-full max-w-md animate__animated animate__fadeInDown">
+        <h2 class="text-3xl text-yellow-400 font-bold mb-6 text-center"><i class="fas fa-user-shield mr-2"></i>Admin Login</h2>
+
+        <form action="/loginAdmin" method="post" class="space-y-6">
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Username</label>
+                <input type="text" name="username" required
+                       class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-yellow-400">
+            </div>
+
+            <div>
+                <label class="block text-white text-sm font-medium mb-2">Password</label>
+                <input type="password" name="password" required
+                       class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 text-white focus:outline-none focus:border-yellow-400">
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 rounded-full transition duration-300 transform hover:scale-105">
+                🔐 Login
+            </button>
+        </form>
+
+        <p class="text-gray-400 text-sm text-center mt-6">Don't have an account?
+            <a th:href="@{/adminsignup}" class="text-yellow-400 hover:text-yellow-300 font-semibold ml-1">Sign up here</a>
+        </p>
+    </div>
+
+</body>
+</html>

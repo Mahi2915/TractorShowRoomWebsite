@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Suppliers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+        }
+
+        .table-wrapper {
+            padding: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #1e1e1e;
+            border-radius: 20px;
+            box-shadow: 0 0 15px gold;
+        }
+
+        .section-title {
+            color: gold;
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        th, td {
+            border: 1px solid gold;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: gold;
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2c2c2c;
+        }
+
+        tr:hover {
+            background-color: #444;
+            transform: scale(1.01);
+            transition: 0.3s;
+        }
+
+        .card-list {
+            display: none;
+        }
+
+        .supplier-card {
+            background: #2a2a2a;
+            border: 1px solid gold;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 10px gold;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        .supplier-card h3 {
+            margin-top: 0;
+            color: gold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            table {
+                display: none;
+            }
+
+            .card-list {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="table-wrapper">
+    <h2 class="section-title">All Suppliers</h2>
+
+    
+    <table>
+        <thead>
+            <tr>
+            <th>Id</th>
+                <th>Supplier Name</th>
+                <th>Phone</th>
+                <th>Address</th>
+</tr>
+        </thead>
+        <tbody>
+            <tr th:each="supplier : ${suppliersList}">
+            <td th:text="${supplier.supplierId}">Supplier Name</td>
+                <td th:text="${supplier.supplierName}">Supplier Name</td>
+                <td th:text="${supplier.phone}">Phone</td>
+                <td th:text="${supplier.address}">Address</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+    <div class="card-list">
+        <div class="supplier-card" th:each="supplier : ${suppliersList}">
+        <h2 th:text="${supplier.supplierId}">Supplier Name</h2>
+            <h3 th:text="${supplier.supplierName}">Supplier Name</h3>
+            <p><strong>Phone:</strong> <span th:text="${supplier.phone}">Phone</span></p>
+            <p><strong>Address:</strong> <span th:text="${supplier.address}">Address</span></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Purchase</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            padding: 40px;
+        }
+
+        h2 {
+            color: orange;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 165, 0, 0.4);
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 25px;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: orange;
+            padding-left: 2px;
+        }
+
+        input[type="number"], input[type="text"] {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid orange;
+            padding: 10px 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: orange;
+            border: none;
+            color: black;
+            padding: 12px 25px;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ffa31a;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Add Purchase</h2>
+
+<form action="/savePurchase" method="post" >
+    <div class="flex-row">
+        <div class="input-group">
+            <label for="partId">Part ID</label>
+            <input type="number" id="partId" name="partId" required />
+        </div>
+        <div class="input-group">
+            <label for="supplierId">Supplier ID</label>
+            <input type="number" id="supplierId" name="supplierId"  required />
+        </div>
+    </div>
+
+    <div class="flex-row">
+        <div class="input-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" name="quantity" required />
+        </div>
+        <div class="input-group">
+            <label for="purchasePrice">Purchase Price</label>
+            <input type="number" step="0.01" id="purchasePrice" name="purchasePrice" required />
+        </div>
+    </div>
+
+    <input type="submit" value="Add Purchase" />
+</form>
+
+</body>
+</html>

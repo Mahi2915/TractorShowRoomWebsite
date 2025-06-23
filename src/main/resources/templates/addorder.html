@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Spare Part Order</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Roboto', sans-serif;
+            color: orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h2 {
+            text-align: center;
+            color: orange;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        label {
+            display: block;
+            margin: 20px 0 10px;
+            color: orange;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid orange;
+            padding: 10px;
+            font-size: 16px;
+            color: white;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-bottom-color: #ffa500;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: orange;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff9900;
+        }
+    </style>
+</head>
+<body>
+
+<form action="/saveOrder"  method="post">
+    <h2>Add Spare Part Order</h2>
+
+    <label for="partId">Part ID</label>
+    <input type="number" id="partId" name="partId"  placeholder="Enter Part ID" required>
+
+    <label for="supplierId">Supplier ID</label>
+    <input type="number" id="supplierId" name="supplierId"  placeholder="Enter Supplier ID" required>
+
+    <label for="quantityOrdered">Quantity</label>
+    <input type="number" id="quantityOrdered" name="quantityOrdered"  placeholder="Enter Quantity" required>
+
+    <button type="submit">Add Order</button>
+</form>
+
+</body>
+</html>
