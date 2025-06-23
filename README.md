@@ -11,4 +11,4 @@ Spring Boot + MS SQL-based CRUD web app for managing tractors, customers, invent
 ## 📋 Features
 - Add, update, delete tractor/customer
 - Inventory & sales tracking
-- Spring Security login
+
